@@ -6,7 +6,7 @@ DEBIAN_FRONTEND=noninteractive apt-get -yq install \
     acl apt-utils attr autoconf bind9utils binutils bison \
     build-essential chrpath curl debhelper dnsutils docbook-xml \
     docbook-xsl flex gcc gdb git glusterfs-common gzip heimdal-multidev \
-    hostname htop krb5-config krb5-kdc krb5-user lcov libacl1-dev \
+    hostname htop lcov libacl1-dev \
     libarchive-dev libattr1-dev libavahi-common-dev libblkid-dev \
     libbsd-dev libcap-dev libcephfs-dev libcups2-dev libdbus-1-dev \
     libglib2.0-dev libgnutls28-dev libgpgme11-dev libicu-dev libjansson-dev \
