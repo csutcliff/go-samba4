@@ -1,7 +1,7 @@
 distro
 Flask
 Flask-Caching
-gevent
+gevent<=20.5.0
 netifaces
 psutil
 py-cpuinfo
