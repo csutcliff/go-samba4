@@ -46,10 +46,10 @@ class auth_base(object):
                 LdapConn, lp_ctx=self.lp, dn=user_dn, session_info_flags=session_info_flags)
             token = session.security_token
 
-            if (token.has_builtin_administrators()):
+            if token.has_builtin_administrators():
                 return True
 
-            if(token.is_system()):
+            if token.is_system():
                 return True
 
         except Exception:

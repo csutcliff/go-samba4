@@ -55,6 +55,8 @@ def group_delete(groupname):
 
 def get_pkgs():
     cached = current_app.cache.get('get_pkgs')
+    pkg_type = ''
+    output = ''
     if cached:
         return cached
     if dist == 'ubuntu' or dist == 'debian':

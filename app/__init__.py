@@ -4,7 +4,7 @@
 from datetime import timedelta
 from flask import Flask, render_template, request
 from flask import session
-
+from .views import default, users, groups
 
 # Define the WSGI application object
 app = Flask(__name__)
@@ -26,9 +26,6 @@ def make_session_permanent():
 def not_found(error):
     return render_template('404.html'), 404
 
-
-## Init App
-from .views import default, users, groups
 
 app.register_blueprint(default.mod)
 app.register_blueprint(users.mod)
