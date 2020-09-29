@@ -23,11 +23,11 @@ from gevent import reinit
 from gevent.pywsgi import WSGIServer
 from gevent.monkey import patch_all
 from flask_caching import Cache
-
+from app import app
 
 os.environ["PATH"] += ':/opt/samba4/bin:/opt/samba4/sbin:/usr/local/samba/bin:/usr/local/samba/sbin'
 
-from app import app
+
 app.template_folder = os.getcwd() + '/templates'
 app.static_folder = os.getcwd() + '/static'
 app.config['CACHE_TYPE'] = 'simple'
@@ -45,15 +45,15 @@ def server_prod(host="0.0.0.0", port=8088, ssl=True, debug=True):
     app.debug = debug
     try:
         if ssl:
-            print('Starting Gevent HTTP server on https://%s:%s' % (host, port))
+            print(('Starting Gevent HTTP server on https://%s:%s' % (host, port)))
             server = WSGIServer(
                 (host, port), app, keyfile='ssl/server.key', certfile='ssl/server.crt')
         else:
-            print('Starting Gevent HTTP server on http://%s:%s' % (host, port))
+            print(('Starting Gevent HTTP server on https://%s:%s' % (host, port)))
             server = WSGIServer((host, port), app)
         server.serve_forever()
     except KeyboardInterrupt:
-        print "Shutdown requested...exiting"
+        print("Shutdown requested...exiting")
     except Exception:
         traceback.print_exc(file=sys.stdout)
     sys.exit(0)
@@ -69,7 +69,7 @@ def server_dev(host="0.0.0.0", port=8088, ssl=True, debug=True):
         else:
             app.run(host=host, port=port, debug=debug)
     except KeyboardInterrupt:
-        print "Shutdown requested...exiting"
+        print("Shutdown requested...exiting")
     except Exception:
         traceback.print_exc(file=sys.stdout)
     sys.exit(0)
@@ -93,10 +93,10 @@ def main():
         parser.print_help()
         sys.exit(1)
 
-    if (options.SRV_PROD):
+    if options.SRV_PROD:
         server_prod(host=options.HOST, ssl=options.SSL)
 
-    if (options.SRV_DEV):
+    if options.SRV_DEV:
         server_dev(host=options.HOST, ssl=options.SSL)
 
 

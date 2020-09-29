@@ -2,14 +2,14 @@
 
 import os
 import psutil
-import commands
-import platform
+import subprocess
+import distro
 from functools import wraps
 from flask import Flask, redirect, current_app
 from flask import url_for, session, flash
 
-dist = platform.dist()[0].lower()
-
+dist = distro.linux_distribution()[0].lower()
+print(dist)
 # Define the WSGI application object
 app = Flask(__name__)
 
@@ -18,7 +18,7 @@ def cmd(shell_cmd):
     """
     Classe para enviar comandos shell
     """
-    status, output = commands.getstatusoutput(shell_cmd)
+    status, output = subprocess.getstatusoutput(shell_cmd)
     if status == 0:
         return output.splitlines()
 
@@ -43,13 +43,13 @@ def user_create(username, password, given_name, surname):
 
 
 def group_create(groupname):
-    cli = "samba-tool group add '%s'" % (groupname)
+    cli = "samba-tool group add '%s'" % groupname
     res = cmd(cli)
     return res
 
 
 def group_delete(groupname):
-    res = cmd("samba-tool group delete '%s'" % (groupname))
+    res = cmd("samba-tool group delete '%s'" % groupname)
     return res
 
 
@@ -75,13 +75,13 @@ def get_pkgs():
 
 
 def user_delete(username):
-    res = cmd("samba-tool user delete %s" % (username))
+    res = cmd("samba-tool user delete %s" % username)
     return res
 
 
 def group_list():
     res = cmd("samba-tool group list")
-    print res
+    print(res)
 
 
 def get_users():

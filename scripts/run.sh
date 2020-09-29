@@ -7,7 +7,7 @@
  --adminpass=Linuxpro123456
 
 /opt/samba4/sbin/samba -D
-/etc/init.d/netdata start
+/usr/sbin/netdata -D
 
 # exec custom command
 if [[ $# -gt 0 ]] ; then

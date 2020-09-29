@@ -28,7 +28,7 @@ def not_found(error):
 
 
 ## Init App
-from views import default, users, groups
+from .views import default, users, groups
 
 app.register_blueprint(default.mod)
 app.register_blueprint(users.mod)
