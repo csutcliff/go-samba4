@@ -67,14 +67,6 @@ fpm -s dir -t deb -n ${PKG_NAME} -v ${PKG_VERSION} -C /tmp/installdir \
   -d "libcups2" \
   -d "libjansson4" \
   -d "libgpgme11" \
-  -d "cron" \
-  -d "libtalloc2" \
-  -d "libtdb1" \
-  -d "libtevent0" \
-  -d "libwbclient0" \
-  -d "logrotate" \
-  -d "python3-crypto" \
-  -d "python3-ldb" \
   -p ${PKG}+dfsg-1.arm64.deb .
 
 mv ${PKG}+dfsg-1.arm64.deb /root/
