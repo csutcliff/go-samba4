@@ -35,7 +35,7 @@ DEBIAN_FRONTEND=noninteractive apt-get -yq install wget
 wget -c ${get_samba4}
 tar xvfz $(basename ${get_samba4})
 cd $(basename ${get_samba4}|sed "s/.tar.gz//")
-./configure --with-ads --systemd-install-services --with-shared-modules=idmap_ad --with-gpgme --enable-debug --enable-selftest --with-json --with-systemd --enable-spotlight --with-regedit --prefix=/opt/samba4
+./configure --with-ads --systemd-install-services --with-shared-modules=ALL --with-gpgme --enable-debug --enable-selftest --with-json --with-systemd --enable-spotlight --with-regedit --prefix=/opt/samba4
 
 make -j$(nproc)
 make install install DESTDIR=/tmp/installdir
