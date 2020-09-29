@@ -6,7 +6,7 @@ DEBIAN_FRONTEND=noninteractive apt-get -yq install \
     acl apt-utils attr autoconf bind9utils binutils bison \
     build-essential chrpath curl debhelper dnsutils docbook-xml \
     docbook-xsl flex gcc gdb git glusterfs-common gzip heimdal-multidev \
-    hostname htop lcov libacl1-dev \
+    hostname htop lcov libacl1-dev python3-talloc-dev\
     libarchive-dev libattr1-dev libavahi-common-dev libblkid-dev \
     libbsd-dev libcap-dev libcephfs-dev libcups2-dev libdbus-1-dev \
     libglib2.0-dev libgnutls28-dev libgpgme11-dev libicu-dev libjansson-dev \
@@ -35,7 +35,7 @@ DEBIAN_FRONTEND=noninteractive apt-get -yq install wget
 wget -c ${get_samba4}
 tar xvfz $(basename ${get_samba4})
 cd $(basename ${get_samba4}|sed "s/.tar.gz//")
-./configure --with-ads --systemd-install-services --with-shared-modules=idmap_ad --with-gpgme --enable-debug --enable-selftest --with-json --with-systemd --with-dmapi --with-winexe --enable-spotlight --with-regedit --prefix=/opt/samba4
+./configure --with-ads --systemd-install-services --with-shared-modules=idmap_ad --with-gpgme --enable-debug --enable-selftest --with-json --with-systemd --with-winexe --enable-spotlight --with-regedit --prefix=/opt/samba4
 
 make -j$(nproc)
 make install install DESTDIR=/tmp/installdir
