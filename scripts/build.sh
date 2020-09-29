@@ -10,7 +10,7 @@ apt-get -yq install wget git-core supervisor python3-dev \
  
 #apt-get install guile-2.0-libs libaio1 libfile-copy-recursive-perl libfribidi0 libgc1c2 libgsasl7 libkyotocabinet16v5 libldb1 libltdl7 liblzo2-2 libmailutils5 libmariadbclient18 libntlm0 libtalloc2 libtdb1 libtevent0 libwbclient0 libwrap0 python3 attr python-dnspython python-ldb python-samba python-talloc python-tdb
 
-#apt install python-zope.interface python-zope.event python3-greenlet python-greenlet-dev
+#apt install python3-zope.interface python3-zope.event python3-greenlet python-greenlet-dev
 
 dpkg -i /tmp/samba-*.amd64.deb
 
