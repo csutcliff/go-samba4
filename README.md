@@ -5,7 +5,7 @@ A web interface to manage samba4 server - Python, Flask Framework
 ## System requirements for development
 
 - Ubuntu 20.04 LTS
-- Samba4 4.13.0
+- Samba 4.13.0
 - Python3
 - Flask Framework
 - Pyinstaller
@@ -13,7 +13,7 @@ A web interface to manage samba4 server - Python, Flask Framework
 ## System requirements for use
 
 - Ubuntu 20.04 LTS
-- Samba4 4.13.0
+- Samba 4.13.0
 
 ## Installing Samba4 on Debian 9
 
