@@ -1,36 +1,15 @@
 #!/bin/bash
 #https://git.samba.org/?p=samba.git;a=blob_plain;f=bootstrap/generated-dists/debian9/bootstrap.sh;hb=v4-12-test
 
-apt-get update
-DEBIAN_FRONTEND=noninteractive apt-get -yq install \
-    acl apt-utils attr autoconf bind9utils binutils bison \
-    build-essential chrpath curl debhelper dnsutils docbook-xml \
-    docbook-xsl flex gcc gdb git glusterfs-common gzip heimdal-multidev \
-    hostname htop lcov libacl1-dev \
-    libarchive-dev libattr1-dev libavahi-common-dev libblkid-dev \
-    libbsd-dev libcap-dev libcephfs-dev libcups2-dev libdbus-1-dev \
-    libglib2.0-dev libgnutls28-dev libgpgme11-dev libicu-dev libjansson-dev \
-    libjs-jquery libjson-perl libkrb5-dev libldap2-dev liblmdb-dev \
-    libncurses5-dev libpam0g-dev libparse-yapp-perl libpcap-dev libpopt-dev \
-    libreadline-dev libsystemd-dev libtasn1-bin libtasn1-dev libunwind-dev \
-    lmdb-utils locales lsb-release make mawk patch perl perl-modules \
-    pkg-config procps psmisc python3 python3-dbg python3-dev python3-dnspython \
-    python3-gpg python3-iso8601 python3-markdown python3-matplotlib \
-    python3-pexpect rng-tools rsync sed sudo tar tree uuid-dev \
-    xfslibs-dev xsltproc zlib1g-dev libtracker-sparql-2.0-dev
-
-DEBIAN_FRONTEND=noninteractive apt-get -yq install ruby-dev
 gem install fpm
 
-mkdir -p /build && cd /build
+cd /tmp/
 
 get_samba4=https://download.samba.org/pub/samba/stable/samba-4.13.0.tar.gz
 
 PKG=$(basename ${get_samba4}|sed "s/.tar.gz//")
 PKG_NAME=$(basename ${get_samba4}|sed "s/.tar.gz//"|cut -d- -f1)
 PKG_VERSION=$(basename ${get_samba4}|sed "s/.tar.gz//"|cut -d- -f2)
-
-DEBIAN_FRONTEND=noninteractive apt-get -yq install wget
 
 wget -c ${get_samba4}
 tar xvfz $(basename ${get_samba4})
@@ -67,13 +46,18 @@ fpm -s dir -t deb -n ${PKG_NAME} -v ${PKG_VERSION} -C /tmp/installdir \
   -d "libcups2" \
   -d "libjansson4" \
   -d "libgpgme11" \
-  -p ${PKG}+dfsg-1.arm64.deb .
+  -p samba.deb .
 
-mv ${PKG}+dfsg-1.arm64.deb /root/
+mv samba.deb /opt/
 
-cd /
-apt-get clean
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archive/*.deb /build
+apt-get clean autoclean \
+apt-get autoremove --yes \
+rm -rf /var/lib/{apt,dpkg,cache,log}/ \
+rm -fr /tmp/* /var/tmp/*
+
+#cd /
+#apt-get clean
+#rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archive/*.deb /build
 
 
 ## Install DEB

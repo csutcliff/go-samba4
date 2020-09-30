@@ -1,36 +1,13 @@
-version: '2'
-
-networks:
-  macvlan-samba:
-    external:
-      name: pihole_pihole_network
+version: '3'
 
 services:
-
-# ----------- samba begin ----------- #
-
-  samba:
-    build:.
-#    image: helge/samba-domain
-    container_name: samba-ad-dc
+  gosamba4-deb:
+    build:
+      context: .
+      dockerfile: build-deb.Dockerfile
+    container_name: gosamba4-deb
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - './samba/tls:/var/lib/samba/private/tls'
-      - './samba/data:/var/lib/samba/'
-      - './samba/data:/var/lib/samba'
-      - './samba/log:/var/log/samba'
-    environment:
-      - DOMAIN=AD.CHAOS
-      - DOMAINPASS=Pa!!word1
-      - DNSFORWARDER=192.168.1.6
-      - HOSTIP=192.168.1.45
-      - TLS=true
-      - LOGS=true
-      - NTPSERVERLIST=192.168.1.1
-      - IMAP_ID_START=10000
-    networks:
-      macvlan-samba:
-        ipv4_address: 192.168.1.45
+      - ./scripts:/root/
     ports:
       - 53:53
       - 53:53/udp
@@ -42,29 +19,17 @@ services:
       - 139:139
       - 389:389
       - 389:389/udp
+      - 443:443
       - 445:445
       - 464:464
       - 464:464/udp
       - 636:636
       - 1024-1044:1024-1044
       - 3268-3269:3268-3269
-    dns_search:
-      - ad.chaos
-    dns:
-      - 192.168.1.45
-      - 192.168.1.6
-    extra_hosts:
-      - dc01 dc01.ad.chaos:192.168.1.45
-    hostname: dc01
-    domainname: ad.chaos
+    hostname: deb01
     cap_add:
       - NET_ADMIN
       - SYS_NICE
       - SYS_RESOURCE
       - SYS_TIME
-#    devices:
-#      - /dev/net/tun
     privileged: true
-    restart: always
-
-# ----------- samba end ----------- #
