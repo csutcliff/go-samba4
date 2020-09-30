@@ -4,6 +4,7 @@ set -e
 cd /tmp/
 git clone https://github.com/burnbabyburn/go-samba4.git
 cd go-samba4
+dpkg -i /tmp/go-samba4/scripts/samba.deb
 rm -rf dist/*
 pip3 install -r requirements.txt
 python3 make_bin.py go_samba4.py
