@@ -4,16 +4,16 @@ A web interface to manage samba4 server - Python, Flask Framework
 
 ## System requirements for development
 
-- Debian 9 64Bits
-- Samba4 4.9.0
-- Python
+- Ubuntu 20.04 LTS
+- Samba4 4.13.0
+- Python3
 - Flask Framework
 - Pyinstaller
 
 ## System requirements for use
 
-- Debian 9 64Bits
-- Samba4 4.9.0
+- Ubuntu 20.04 LTS
+- Samba4 4.13.0
 
 ## Installing Samba4 on Debian 9
 
