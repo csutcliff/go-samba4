@@ -24,6 +24,7 @@ python3 make_bin.py go_samba4.py
 mv /tmp/go-samba4/dist /opt/go-samba4
 chmod +x /opt/go-samba4/go_samba4
 
+apt install autoconf-archive autogen autogen-doc cmake cmake-data guile-2.2-libs libelf-dev libgc1c2 libjson-c-dev libjsoncpp1 libjudy-dev libjudydebian1 liblz4-dev libmnl-dev libopts25 libopts25-dev librhash0 libuv1-dev netcat netcat-openbsd
 cd /tmp/
 wget https://my-netdata.io/kickstart.sh
 /bin/bash kickstart.sh --dont-wait --dont-start-it
