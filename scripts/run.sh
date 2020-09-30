@@ -9,8 +9,8 @@
 IMAP_ID_START=${IMAP_UID_START:-10000}
 IMAP_UID_START=${IMAP_UID_START:-$IMAP_ID_START}
 IMAP_GID_START=${IMAP_GID_START:-$IMAP_ID_START}
-LDAPDN="DC=LINUXPRO,DC=NET"
-NETBIOS="LINUXPRO"
+LDAPDN="DC=linuxpro,DC=net"
+NETBIOS="linuxpro"
  
 GID_DOM_USER=$((IMAP_GID_START))
 GID_DOM_ADMIN=$((IMAP_GID_START+1))
@@ -58,7 +58,7 @@ sed -e "s: {{ LDAPDN }}:$LDAPDN:g" \
  -e "s:{{ IMAP_UID_END }}:$IMAP_UID_END:g" \
  -e "s:{{ IMAP_GID_END }}:$IMAP_GID_END:g" \
  /tmp/go-samba4/scripts/samba/RFC_Domain_User_Group.ldif.j2 > /opt/samba4/RFC_Domain_User_Group.ldif
-ldbmodify -H /opt/samba4/private/sam.ldb /opt/samba4/RFC_Domain_User_Group.ldif -U Administrator
+/opt/samba4/bin/ldbmodify -H /opt/samba4/private/sam.ldb /opt/samba4/RFC_Domain_User_Group.ldif -U Administrator
 
 /opt/samba4/sbin/samba -D
 /usr/sbin/netdata -D
