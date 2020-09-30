@@ -1,7 +1,8 @@
 distro
-Flask
-Flask-Caching
-gevent<=20.5.0
+Flask==1.1.1
+Flask-Caching==1.8.0
+gevent==1.4.0
+greenlet==4.15.0
 netifaces
 psutil
 py-cpuinfo
