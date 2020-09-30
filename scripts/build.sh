@@ -14,8 +14,6 @@ chmod +x /opt/go-samba4/go_samba4
 cd /tmp/
 wget https://my-netdata.io/kickstart.sh
 /bin/bash kickstart.sh --dont-wait --dont-start-it
-cp /opt/netdata/system/netdata-lsb /etc/init.d/netdata
-chmod +x /etc/init.d/netdata
 
 cd /
 apt-get clean
