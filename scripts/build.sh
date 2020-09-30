@@ -1,5 +1,10 @@
 #!/bin/bash
 set -e
+REALM="LINUXPRO.NET"
+DOMAIN="LINUXPRO"
+LDAPDN=",DC=linuxpro,DC=net"
+NETBIOS="linuxpro"
+ADMINPASS="Linuxpro123456"
 
 cd /tmp/
 git clone https://github.com/burnbabyburn/go-samba4.git
@@ -47,14 +52,12 @@ autorestart=true
 
 ### Create Domain
 /opt/samba4/bin/samba-tool domain provision --server-role=dc --use-rfc2307 \
- --dns-backend=SAMBA_INTERNAL --realm=LINUXPRO.NET --domain=LINUXPRO \
- --adminpass=Linuxpro123456
+ --dns-backend=SAMBA_INTERNAL --realm=$REALM --domain=$DOMAIN \
+ --adminpass=$ADMINPASS
  
 IMAP_ID_START=${IMAP_UID_START:-10000}
 IMAP_UID_START=${IMAP_UID_START:-$IMAP_ID_START}
 IMAP_GID_START=${IMAP_GID_START:-$IMAP_ID_START}
-LDAPDN=",DC=linuxpro,DC=net"
-NETBIOS="linuxpro"
  
 GID_DOM_USER=$((IMAP_GID_START))
 GID_DOM_ADMIN=$((IMAP_GID_START+1))
