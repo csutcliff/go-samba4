@@ -1,10 +1,10 @@
-distro
+distro==1.4.0
 Flask==1.1.1
 Flask-Caching==1.8.0
 gevent==1.4.0
 greenlet==4.15.0
-netifaces
-psutil
-py-cpuinfo
+netifaces==0.10.4
+psutil==5.5.1
+py-cpuinfo==5.0.0
 PyInstaller
 python-ldap
