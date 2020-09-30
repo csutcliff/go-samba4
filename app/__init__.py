@@ -8,7 +8,9 @@ from .views import default, users, groups
 
 # Define the WSGI application object
 app = Flask(__name__)
-
+app.register_blueprint(default.mod)
+app.register_blueprint(users.mod)
+app.register_blueprint(groups.mod)
 
 @app.before_request
 def log_request():
@@ -25,8 +27,3 @@ def make_session_permanent():
 @app.errorhandler(404)
 def not_found(error):
     return render_template('404.html'), 404
-
-
-app.register_blueprint(default.mod)
-app.register_blueprint(users.mod)
-app.register_blueprint(groups.mod)
