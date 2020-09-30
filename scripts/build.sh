@@ -5,7 +5,6 @@ cd /tmp/
 git clone https://github.com/burnbabyburn/go-samba4.git
 cd go-samba4
 rm -rf dist/*
-pip3 install pyasn1 --upgrade
 pip3 install -r requirements.txt
 python3 make_bin.py go_samba4.py
 mv /tmp/go-samba4/dist /opt/go-samba4
