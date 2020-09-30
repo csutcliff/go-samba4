@@ -46,6 +46,7 @@ fpm -s dir -t deb -n ${PKG_NAME} -v ${PKG_VERSION} -C /tmp/installdir \
   -d "libcups2" \
   -d "libjansson4" \
   -d "libgpgme11" \
+  -d "liblmdb0" \
   -p samba.deb .
 
 mv samba.deb /opt/
