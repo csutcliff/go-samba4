@@ -58,7 +58,7 @@ sed -e "s: {{ LDAPDN }}:$LDAPDN:g" \
  -e "s:{{ IMAP_UID_END }}:$IMAP_UID_END:g" \
  -e "s:{{ IMAP_GID_END }}:$IMAP_GID_END:g" \
  /tmp/go-samba4/scripts/samba/RFC_Domain_User_Group.ldif.j2 > /opt/samba4/RFC_Domain_User_Group.ldif
-ldbmodify -H /opt/samba4/private/sam.ldb /opt/samba4/RFC_Domain_User_Group.ldif -U Administrator
+/opt/samba4/bin/ldbmodify -H /opt/samba4/private/sam.ldb /opt/samba4/RFC_Domain_User_Group.ldif -U Administrator
 
 /opt/samba4/sbin/samba -D
 /usr/sbin/netdata -D
