@@ -50,9 +50,8 @@ fpm -s dir -t deb -n ${PKG_NAME} -v ${PKG_VERSION} -C /tmp/installdir \
 
 mv samba.deb /opt/
 
-apt-get clean autoclean \
-apt-get autoremove --yes \
-rm -rf /var/lib/{apt,dpkg,cache,log}/ \
+apt-get clean autoclean
+apt-get autoremove --yes
 rm -fr /tmp/* /var/tmp/*
 
 #cd /
