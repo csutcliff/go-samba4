@@ -274,7 +274,7 @@
 
 $("#users #delete").click(function() {
       var username = $(this).attr('data-user');
-      if (confirm('Deseja excluir o usuário ' +username+ ' ?')) {
+      if (confirm('Deleting user ' +username+ ' ?')) {
         deleteUser(username);
     }
   });
