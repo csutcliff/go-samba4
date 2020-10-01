@@ -1,4 +1,4 @@
-FROM Ubuntu
+FROM ubuntu
 LABEL maintainer="Nilton OS <jniltinho@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -14,8 +14,6 @@ RUN apt-get update \
     autoconf-archive autogen autogen-doc cmake cmake-data guile-2.2-libs libelf-dev \
     libgc1c2 libjson-c-dev libjsoncpp1 libjudy-dev libjudydebian1 liblz4-dev libmnl-dev \
     libopts25 libopts25-dev librhash0 libuv1-dev netcat netcat-openbsd curl libltdl-dev
-
-#apt install python3-zope.interface python3-zope.event python3-greenlet python-greenlet-dev python3-flask-caching python3-flask python3-netifaces python3-psutil python3-distro python3-cpuinfo py-cpuinfo
 
 ADD scripts/build.sh /build.sh
 ADD scripts/run.sh /run.sh

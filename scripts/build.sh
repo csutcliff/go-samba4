@@ -20,10 +20,6 @@ cd /tmp/
 wget https://my-netdata.io/kickstart.sh
 /bin/bash kickstart.sh --dont-wait --dont-start-it
 
-cd /
-apt-get clean
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archive/*.deb
-
 echo '[supervisord] 
 nodaemon=true
 
@@ -109,3 +105,7 @@ sed -e "s: {{ LDAPDN }}:$LDAPDN:g" \
 
 
 rm /etc/nginx/sites-available/default
+cp /tmp/go-samba4/scripts/nginx/default /etc/nginx/sites-available/default
+cd /
+apt-get clean
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archive/*.deb
