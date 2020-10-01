@@ -20,9 +20,7 @@ RUN apt-get update \
     pkg-config procps psmisc python3 python3-dbg python3-dev python3-dnspython \
     python3-gpg python3-iso8601 python3-markdown python3-matplotlib \
     python3-pexpect rng-tools rsync sed sudo tar tree uuid-dev \
-    xfslibs-dev xsltproc zlib1g-dev libtracker-sparql-2.0-dev ruby-dev wget 
+    xfslibs-dev xsltproc zlib1g-dev libtracker-sparql-2.0-dev ruby-dev wget \
+    && chmod +x /build_deb.sh && sync && sleep 2 && /build_deb.sh
 
 ADD scripts/build_deb.sh /
-
-## Install base packages
-RUN chmod +x /build_deb.sh && sync && sleep 2 && /build_deb.sh

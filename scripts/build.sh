@@ -9,42 +9,19 @@ ADMINPASS="Linuxpro123456"
 cd /tmp/
 git clone https://github.com/burnbabyburn/go-samba4.git
 cd go-samba4
-dpkg -i /tmp/go-samba4/scripts/samba.deb
+dpkg -i /tmp/samba.deb
 rm -rf dist/*
 pip3 install -r requirements.txt
 python3 make_bin.py go_samba4.py
 mv /tmp/go-samba4/dist /opt/go-samba4
 chmod +x /opt/go-samba4/go_samba4
 
+rm /etc/nginx/sites-available/default && cp /tmp/go-samba4/scripts/nginx/default /etc/nginx/sites-available/default
+cp /tmp/go-samba4/scripts/supervisord/supervisord.conf /etc/supervisord.conf
+
 cd /tmp/
 wget https://my-netdata.io/kickstart.sh
 /bin/bash kickstart.sh --dont-wait --dont-start-it
-
-echo '[supervisord] 
-nodaemon=true
-
-[program:go_samba4]
-directory=/opt/go-samba4
-autostart=true
-autorestart=true
-command=/opt/go-samba4/go_samba4 --server-prod --ssl
-
-[program:samba]
-directory=/opt/samba4
-autostart=true
-autorestart=true
-command=/opt/samba4/sbin/samba -F
-
-[program:netdata]
-autostart=true
-autorestart=true
-command=/usr/sbin/netdata -D
-
-[program:nginx]
-command=/usr/sbin/nginx -g "daemon off;"
-autostart=true
-autorestart=true
-#user=nobody' > /etc/supervisord.conf
 
 ### Create Domain
 /opt/samba4/bin/samba-tool domain provision --server-role=dc --use-rfc2307 \
@@ -105,4 +82,4 @@ sed -e "s: {{ LDAPDN }}:$LDAPDN:g" \
 
 cd /
 apt-get clean
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archive/*.deb /etc/nginx/sites-available/default
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archive/*.deb 

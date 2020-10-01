@@ -1,22 +1,9 @@
 version: '3'
 
 services:
-  gosamba4-deb:
-    build:
-      context: .
-      dockerfile: build-deb.Dockerfile
-    container_name: gosamba4-deb
-    volumes:
-      - ./scripts:/root/
-    hostname: deb01
-
-  gosamba4-run:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: gosamba4-deb
-    volumes:
-      - ./scripts:/root/
+  gosamba4:
+    build: .
+    container_name: gosamba4
     hostname: gosamba4
     ports:
       - 53:53
@@ -42,4 +29,4 @@ services:
       - SYS_RESOURCE
       - SYS_TIME
       - SYS_PTRACE
-    privileged: true
+#    privileged: true
