@@ -103,9 +103,6 @@ sed -e "s: {{ LDAPDN }}:$LDAPDN:g" \
      /tmp/go-samba4/scripts/samba/RFC_Domain_User_Group.ldif.j2 > /opt/samba4/RFC_Domain_User_Group.ldif
 /opt/samba4/bin/ldbmodify -H /opt/samba4/private/sam.ldb /opt/samba4/RFC_Domain_User_Group.ldif -U Administrator
 
-
-rm /etc/nginx/sites-available/default
-cp /tmp/go-samba4/scripts/nginx/default /etc/nginx/sites-available/default
 cd /
 apt-get clean
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archive/*.deb
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archive/*.deb /etc/nginx/sites-available/default
