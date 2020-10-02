@@ -37,7 +37,9 @@ RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get -y install \
     autoconf-archive autogen autogen-doc cmake cmake-data guile-2.2-libs libelf-dev \
     libgc1c2 libjson-c-dev libjsoncpp1 libjudy-dev libjudydebian1 liblz4-dev libmnl-dev \
-    libopts25 libopts25-dev librhash0 libuv1-dev netcat netcat-openbsd curl libltdl-dev uwsgi-plugin-gevent-python3
+    libopts25 libopts25-dev librhash0 libuv1-dev netcat netcat-openbsd curl libltdl-dev uwsgi-plugin-gevent-python3 \
+    && apt install mingw-w64
+#mingw-w64 (roughly 1gb) for arm64 (execution format error)?
 
 ADD scripts/build.sh /build.sh
 ADD scripts/run.sh /run.sh
