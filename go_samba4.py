@@ -39,17 +39,17 @@ reinit()
 patch_all(dns=False)
 
 
-def server_prod(host="0.0.0.0", port=8088, ssl=True, debug=True):
+def server_prod(host="0.0.0.0", port=80, ssl=True, debug=True):
     if sys.argv[0].split(".")[-1] != 'py':
         debug = False
     app.debug = debug
     try:
         if ssl:
-            print(('Starting Gevent HTTP server on https://%s:%s' % (host, port)))
+            print(('Starting Gevent HTTPS server on https://%s:%s' % (host, port)))
             server = WSGIServer(
                 (host, port), app, keyfile='ssl/server.key', certfile='ssl/server.crt')
         else:
-            print(('Starting Gevent HTTP server on https://%s:%s' % (host, port)))
+            print(('Starting Gevent HTTP server on http://%s:%s' % (host, port)))
             server = WSGIServer((host, port), app)
         server.serve_forever()
     except KeyboardInterrupt:
@@ -59,7 +59,7 @@ def server_prod(host="0.0.0.0", port=8088, ssl=True, debug=True):
     sys.exit(0)
 
 
-def server_dev(host="0.0.0.0", port=8088, ssl=True, debug=True):
+def server_dev(host="0.0.0.0", port=80, ssl=True, debug=True):
     context = ('ssl/server.crt', 'ssl/server.key')
     if sys.argv[0].split(".")[-1] != 'py':
         debug = False
